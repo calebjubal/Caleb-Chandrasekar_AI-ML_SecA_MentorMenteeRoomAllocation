@@ -1,0 +1,25 @@
+# Virtual environment
+venv/
+.env
+*.env
+
+# Streamlit cache
+.streamlit/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook checkpoints (if used)
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
+# Supabase generated keys/configs (if any)
+supabase/.temp/
