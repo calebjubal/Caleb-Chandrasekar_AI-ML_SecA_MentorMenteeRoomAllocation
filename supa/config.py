@@ -1,6 +1,6 @@
 from supabase import create_client, Client
 
-SUPABASE_URL = "https://YOUR_PROJECT.supabase.co"
-SUPABASE_KEY = "YOUR_ANON_OR_SERVICE_ROLE_KEY"
+SUPABASE_URL = "https://qtubpiwryeshgeuotpgk.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0dWJwaXdyeWVzaGdldW90cGdrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkzNDU0MjUsImV4cCI6MjA1NDkyMTQyNX0.i_YxR0aLgcfYlf7YzaRYwB5vwJghP9SEDKtSzuSsJAM"
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
