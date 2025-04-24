@@ -1,0 +1,20 @@
+{
+  "name": "mentor-mentee-room-alocation",
+  "version": "1.0.0",
+  "description": "A Mentor-Mnetee Allocator",
+  "homepage": "https://github.com/calebjubal/mentor-mentee-room-alocation#readme",
+  "bugs": {
+    "url": "https://github.com/calebjubal/mentor-mentee-room-alocation/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calebjubal/mentor-mentee-room-alocation.git"
+  },
+  "license": "ISC",
+  "author": "Caleb Chandrasekar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
