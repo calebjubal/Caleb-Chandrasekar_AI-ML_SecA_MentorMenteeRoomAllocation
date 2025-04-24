@@ -2,34 +2,89 @@
 <html>
   <head>
     <base target="_top">
+    <title>Room Allocation System</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding-top: 60px;
+        background-color: #f8f9fa;
+      }
+      .github-link {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 1.2rem;
+      }
+      .content {
+        text-align: center;
+      }
+      .description {
+        text-align: justify;
+        max-width: 600px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+      }
+    </style>
   </head>
   <body>
+    <!-- GitHub Link -->
+    <a
+      class="github-link text-decoration-none"
+      href="https://github.com/YOUR_GITHUB_REPO"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"
+        alt="GitHub"
+        style="height: 24px; vertical-align: middle;"
+      />
+      GitHub
+    </a>
 
-    <button id="btn">Run Function</button>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="content my-4">
+        <h1 class="display-5 fw-bold">Room Allocation System</h1>
+        <p class="description mt-3">
+          This application helps automatically assign rooms to mentors based on their mentee count and block preference.
+          By analyzing room capacity and priority blocks (like 'B'), the system ensures efficient allocation. Click below
+          to execute the room allocation process using Google Apps Script.
+        </p>
 
+        <button id="btn" class="btn btn-primary btn-lg mt-4">Run Allocation</button>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script -->
     <script>
-
-      function runGoogleScript(serverFuncName){
-
-          return new Promise((resolve, reject) => {
-              google.script.run.withSuccessHandler(data => {
-              resolve(data)
-              }).withFailureHandler(er => {
-                reject(er)
-              }).[serverFuncName]()
-          });
-
+      function runGoogleScript(serverFuncName) {
+        return new Promise((resolve, reject) => {
+          google.script.run
+            .withSuccessHandler((data) => resolve(data))
+            .withFailureHandler((error) => reject(error))[serverFuncName]();
+        });
       }
 
       async function getDataFromServer() {
-
-          const data = await runGoogleScript('allocateRoomsToMentors')
-          alert(data)
-
+        try {
+          const data = await runGoogleScript("allocateRTM");
+          alert("Room Allocation Done!");
+        } catch (error) {
+          alert("Error: " + error.message);
+        }
       }
 
-      document.getElementById("btn").addEventListener("click", getDataFromServer)
-    
+      document
+        .getElementById("btn")
+        .addEventListener("click", getDataFromServer);
     </script>
   </body>
 </html>
