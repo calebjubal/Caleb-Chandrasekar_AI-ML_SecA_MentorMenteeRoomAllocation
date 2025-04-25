@@ -15,6 +15,10 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "glogin": "clasp login",
+    "glogout": "clasp logout",
+    "gpush": "clasp push",
+    "gcreate": "clasp create --title 'React Test Project' --rootDir ./src",
+    "gclone": "clasp clone ${process.env.SCRIPT_ID} --rootDir ./src"
   }
 }
