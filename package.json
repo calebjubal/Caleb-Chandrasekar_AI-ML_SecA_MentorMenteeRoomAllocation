@@ -20,5 +20,8 @@
     "gpush": "clasp push",
     "gcreate": "clasp create --title 'React Test Project' --rootDir ./src",
     "gclone": "clasp clone ${process.env.SCRIPT_ID} --rootDir ./src"
+  },
+  "dependencies": {
+    "nodemailer": "^6.10.1"
   }
 }
