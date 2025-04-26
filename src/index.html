@@ -34,7 +34,7 @@
     <!-- GitHub Link -->
     <a
       class="github-link text-decoration-none"
-      href="https://github.com/YOUR_GITHUB_REPO"
+      href="https://github.com/calebjubal/mentor-mentee-room-allocation"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -57,6 +57,12 @@
         </p>
 
         <button id="btn" class="btn btn-primary btn-lg mt-4">Run Allocation</button>
+        <button id="btn" class="btn btn-primary btn-lg mt-4">Send Email</button>
+
+        <div class="container mt-5">
+          <div id="resultTableContainer"></div>
+        </div>
+        
       </div>
     </div>
 
@@ -75,16 +81,36 @@
 
       async function getDataFromServer() {
         try {
-          const data = await runGoogleScript("allocateRTM");
-          alert("Room Allocation Done!");
+          const csvData = await runGoogleScript("allocateRTM");
+          alert("Room Allocation Completed!");
+          displayCSVAsTable(csvData);
         } catch (error) {
           alert("Error: " + error.message);
         }
       }
 
-      document
-        .getElementById("btn")
-        .addEventListener("click", getDataFromServer);
+      function displayCSVAsTable(csv) {
+        const rows = csv.trim().split("\n");
+        const table = document.createElement("table");
+        table.className = "table table-striped table-bordered";
+
+        rows.forEach((row, index) => {
+          const tr = document.createElement("tr");
+          row.split(",").forEach(cell => {
+            const td = document.createElement(index === 0 ? "th" : "td");
+            td.textContent = cell;
+            tr.appendChild(td);
+          });
+          table.appendChild(tr);
+        });
+
+        const container = document.getElementById("resultTableContainer");
+        container.innerHTML = ""; // Clear existing
+        container.appendChild(table);
+      }
+
+      document.getElementById("btn").addEventListener("click", getDataFromServer);
     </script>
+
   </body>
 </html>
