@@ -11,7 +11,7 @@ The **Room Allocation System** is a Google Apps Script-based application designe
 4. [How It Works](#how-it-works)
 5. [Usage](#usage)
 6. [Contributing](#contributing)
-7. [Video Explanation](#video-explanation)
+7. [Video + PPT](#video-explanation)
 
 ---
 
@@ -103,5 +103,5 @@ To use this system, ensure you have the following:
 
 ## Video Explanation
 
-- [Drive Link](https://drive.google.com/file/d/1WjSjELGdQAZCYUuHTO4AtDQOxPvIgg9v/view?usp=sharing)
+- [Drive Link](https://drive.google.com/drive/folders/1uzXBo-1kVqSZtjJ4ImZ8Q6K9XLX-u_3x?usp=sharing)
 ---
