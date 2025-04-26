@@ -93,27 +93,6 @@ To use this system, ensure you have the following:
 
 ---
 
-## Contributing
-
-We welcome contributions to improve the Room Allocation System! To contribute:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add your commit message here"
-   ```
-4. Push your changes to your fork:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-5. Submit a pull request detailing your changes.
-
----
-
 ## Acknowledgments
 
 - Built using [Google Apps Script](https://developers.google.com/apps-script).
