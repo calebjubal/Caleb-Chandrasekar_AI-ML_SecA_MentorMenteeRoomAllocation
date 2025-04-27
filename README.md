@@ -1,8 +1,8 @@
-# Room Allocation System
+# Mentor-Mentee Room Allocation System
 
 ![Google Apps Script](https://img.shields.io/badge/Google%20Apps%20Script-Supported-green)
 
-The **Room Allocation System** is a Google Apps Script-based application designed to automatically assign rooms to mentors based on their mentee count and block preference. The system prioritizes efficient allocation by analyzing room capacity and preferred blocks (e.g., 'B').
+The **Mentor-Mentee Room Allocation System** is a Google Apps Script-based application designed to automatically assign rooms to mentors based on their mentee count and block preference. The system prioritizes efficient allocation by analyzing room capacity and preferred blocks (e.g., 'B').
 
 ## Table of Contents
 1. [Features](#features)
