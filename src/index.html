@@ -56,8 +56,8 @@
           to execute the room allocation process using Google Apps Script.
         </p>
 
-        <button id="btn" class="btn btn-primary btn-lg mt-4">Run Allocation</button>
-        <button id="btn" class="btn btn-primary btn-lg mt-4">Send Email</button>
+        <button id="allocateBtn" class="btn btn-primary btn-lg mt-4">Run Allocation</button>
+        <button id="emailBtn" class="btn btn-success btn-lg mt-4 ms-2">Send Emails</button>
 
         <div class="container mt-5">
           <div id="resultTableContainer"></div>
@@ -89,6 +89,15 @@
         }
       }
 
+      async function sendEmails() {
+        try {
+          const result = await runGoogleScript("sendEmailsToMentors");
+          alert(result);
+        } catch (error) {
+          alert("Error sending emails: " + error.message);
+        }
+      }
+
       function displayCSVAsTable(csv) {
         const rows = csv.trim().split("\n");
         const table = document.createElement("table");
@@ -109,7 +118,8 @@
         container.appendChild(table);
       }
 
-      document.getElementById("btn").addEventListener("click", getDataFromServer);
+      document.getElementById("allocateBtn").addEventListener("click", getDataFromServer);
+      document.getElementById("emailBtn").addEventListener("click", sendEmails);
     </script>
 
   </body>
