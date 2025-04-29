@@ -10,8 +10,8 @@ function allocateRTM() {
   const mentorSheet = ss.getSheetByName("Mentor List");
   const allocationSheet = ss.getSheetByName("Room Allocation") || ss.insertSheet("Room Allocation");
 
-  // Fetch mentor data
-  const mentorData = mentorSheet.getRange(2, 1, mentorSheet.getLastRow() - 1, 5).getValues();
+  // Fetch mentor data (now including email)
+  const mentorData = mentorSheet.getRange(2, 1, mentorSheet.getLastRow() - 1, 6).getValues();
   let roomData = roomSheet.getRange(2, 1, roomSheet.getLastRow() - 1, 2).getValues();
 
   // Sort rooms
@@ -26,10 +26,10 @@ function allocateRTM() {
 
   // Clear allocation sheet
   allocationSheet.clearContents();
-  const headers = ["Mentor", "Programme", "No. of Mentee", "Room", "Occupancy", "Block Preference"];
+  const headers = ["Mentor", "Programme", "No. of Mentee", "Room", "Occupancy", "Block Preference", "Email"];
   allocationSheet.appendRow(headers);
 
-  mentorData.forEach(([programme, sem, mentor, menteeCount, blockPref]) => {
+  mentorData.forEach(([programme, sem, mentor, menteeCount, blockPref, email]) => {
     let assignedRoom = null;
 
     for (let i = 0; i < roomData.length; i++) {
@@ -56,7 +56,8 @@ function allocateRTM() {
       menteeCount,
       assignedRoom ? assignedRoom[0] : "Not Assigned",
       assignedRoom ? assignedRoom[1] : "N/A",
-      blockPref
+      blockPref,
+      email
     ]);
   });
 
@@ -82,34 +83,44 @@ function sendEmailsToMentors() {
   const roomIndex = headers.indexOf("Room");
   const programmeIndex = headers.indexOf("Programme");
   const menteeCountIndex = headers.indexOf("No. of Mentee");
+  const emailIndex = headers.indexOf("Email");
   
   mentorData.forEach(row => {
     const mentor = row[mentorIndex];
     const room = row[roomIndex];
     const programme = row[programmeIndex];
+    const menteeCount = row[menteeCountIndex];
+    const email = row[emailIndex];
     
-    if (room !== "Not Assigned") {
+    if (room !== "Not Assigned" && email) {
       const subject = "Room Allocation Notification";
       const body = `
-        Dear ${mentor},
+
+Dear ${mentor},
         
-        Your room has been allocated for the mentor-mentee meeting.
+Your room has been allocated for the mentor-mentee meeting.
         
-        Details:
-        - Programme: ${programme}
-        - Allocated Room: ${room}
+Details:
+     - Programme: ${programme}
+     - Number of Mentees: ${menteeCount}
+     - Allocated Room: ${room}
         
-        Please ensure you arrive at the allocated room at the scheduled time.
+Please ensure you arrive at the allocated room at the scheduled time.
         
-        Best regards,
-      `;
+Best regards,
+Room Allocation System
+      `
+      ;
       
-      // For testing, send to your email
-      MailApp.sendEmail({
-        to: "2301730057@krmu.edu.in",
-        subject: subject,
-        body: body
-      });
+      try {
+        MailApp.sendEmail({
+          to: email,
+          subject: subject,
+          body: body
+        });
+      } catch (error) {
+        Logger.log(`Failed to send email to ${email}: ${error.message}`);
+      }
     }
   });
   
